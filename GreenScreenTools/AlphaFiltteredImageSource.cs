@@ -113,7 +113,7 @@ namespace GreenScreenTools
         public void SetFilterSettings(Windows.UI.Color color, double distance)
         {
             var filters = new List<IFilter>();
-            filters.Add(new ChromaKeyFilter(color, 0.3, 1, false));
+            filters.Add(new ChromaKeyFilter(color, distance, 1, false));
             // filters.Add(new CartoonFilter(false));
             _filterEffect = new FilterEffect(_imageProvider)
             {

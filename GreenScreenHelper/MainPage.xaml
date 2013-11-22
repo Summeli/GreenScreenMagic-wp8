@@ -30,13 +30,13 @@
 
      
         <StackPanel x:Name="textPanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="help" Foreground="Red" Text="Tap viewfinder to choose color" />
+            <TextBlock x:Name="help" Foreground="Red" Text="Tap viewfinder to choose color, and use slider to change color accuracy" />
         </StackPanel>
         
         <!--Used for debugging >-->
         <StackPanel Grid.Row="1" Margin="20, 0" >
-            <Slider Minimum="1" Maximum="10" Value="5"
-                    SmallChange="1" LargeChange="2"/>
+            <Slider Name="accuracySlider"  Minimum="0" Maximum="0.5" Value="0.2"
+                    SmallChange="0.05" LargeChange="0.1" ValueChanged="accuracySlider_ValueChanged"/>
         </StackPanel>
     </Grid>
 

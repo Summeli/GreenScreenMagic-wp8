@@ -73,9 +73,6 @@ namespace GreenScreenHelper
             viewfinderBrush.SetSource(_mediaElement);
         }
 
-        private void btn_ChangeColor(object sender, RoutedEventArgs e)
-        { 
-        }
 
         private void viewfinderCanvas_Tap(object sender, GestureEventArgs e)
         {
@@ -104,5 +101,17 @@ namespace GreenScreenHelper
             _filtteredImageSource.SetFilterSettings(_currentColor, _currentDelta);
             _filtteredImageSource.resume();
         }
+
+        private void accuracySlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            _currentDelta = e.NewValue;
+            if (_filtteredImageSource != null)
+            {
+                _filtteredImageSource.pause();
+                _filtteredImageSource.SetFilterSettings(_currentColor, _currentDelta);
+                _filtteredImageSource.resume();
+            }
+        }
+
     }
 }
