@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
-  <App xmlns="" ProductID="{6d143043-9582-46e3-94d0-8ca99097cfb1}" Title="GreenScreenHelper" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="GreenScreenHelper author" Description="Sample description" Publisher="GreenScreenHelper" PublisherID="{24d5848c-855e-4c9e-bbdf-2c98bd9e6a5e}">
+  <App xmlns="" ProductID="{6d143043-9582-46e3-94d0-8ca99097cfb1}" Title="GreenScreenHelper" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="GreenScreenHelper author" Description="Greenscreen helper helps you to tune lights and background for your recording scene into the way that the background is as solid color as possible" Publisher="GreenScreenHelper" PublisherID="{24d5848c-855e-4c9e-bbdf-2c98bd9e6a5e}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
@@ -20,17 +20,21 @@
           <SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileSmall.png</SmallImageURI>
           <Count>0</Count>
           <BackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileMedium.png</BackgroundImageURI>
-          <Title>GreenScreenHelper</Title>
+          <Title>
+          </Title>
           <BackContent>
           </BackContent>
-          <BackBackgroundImageURI>
+          <BackBackgroundImageURI IsRelative="true" IsResource="false">
           </BackBackgroundImageURI>
           <BackTitle>
           </BackTitle>
-          <DeviceLockImageURI>
+          <LargeBackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileLarge.png</LargeBackgroundImageURI>
+          <LargeBackContent />
+          <LargeBackBackgroundImageURI IsRelative="true" IsResource="false">
+          </LargeBackBackgroundImageURI>
+          <DeviceLockImageURI IsRelative="true" IsResource="false">
           </DeviceLockImageURI>
-          <HasLarge>
-          </HasLarge>
+          <HasLarge>True</HasLarge>
         </TemplateFlip>
       </PrimaryToken>
     </Tokens>
