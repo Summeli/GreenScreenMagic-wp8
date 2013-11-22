@@ -9,9 +9,9 @@ Nokia Imaging SDK
 
 Credits
 ========
- * Source code: [summeli]
+ * Source code: [Antti Pohjola]
  * Icon by: [Danilo Demarco]
 
 -------
 [Danilo Demarco]: http://www.danilodemarco.com/  "Danilo Demarco"
-[summeli]: www.summeli.fi "Antti Pohjola"
+[Antti Pohjola]: www.summeli.fi "Antti Pohjola"
