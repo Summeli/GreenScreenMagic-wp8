@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Windows Phone
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreenScreenHelper", "GreenScreenHelper\GreenScreenHelper.csproj", "{6D143043-9582-46E3-94D0-8CA99097CFB1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{088EA2D1-FB48-420D-B3EA-F2470D28C665} = {088EA2D1-FB48-420D-B3EA-F2470D28C665}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreenScreenTools", "GreenScreenTools\GreenScreenTools.csproj", "{088EA2D1-FB48-420D-B3EA-F2470D28C665}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6D143043-9582-46E3-94D0-8CA99097CFB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D143043-9582-46E3-94D0-8CA99097CFB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D143043-9582-46E3-94D0-8CA99097CFB1}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{6D143043-9582-46E3-94D0-8CA99097CFB1}.Debug|ARM.ActiveCfg = Debug|ARM
+		{6D143043-9582-46E3-94D0-8CA99097CFB1}.Debug|ARM.Build.0 = Debug|ARM
+		{6D143043-9582-46E3-94D0-8CA99097CFB1}.Debug|ARM.Deploy.0 = Debug|ARM
+		{6D143043-9582-46E3-94D0-8CA99097CFB1}.Debug|x86.ActiveCfg = Debug|x86
+		{6D143043-9582-46E3-94D0-8CA99097CFB1}.Debug|x86.Build.0 = Debug|x86
+		{6D143043-9582-46E3-94D0-8CA99097CFB1}.Debug|x86.Deploy.0 = Debug|x86
+		{6D143043-9582-46E3-94D0-8CA99097CFB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D143043-9582-46E3-94D0-8CA99097CFB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D143043-9582-46E3-94D0-8CA99097CFB1}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{6D143043-9582-46E3-94D0-8CA99097CFB1}.Release|ARM.ActiveCfg = Release|ARM
+		{6D143043-9582-46E3-94D0-8CA99097CFB1}.Release|ARM.Build.0 = Release|ARM
+		{6D143043-9582-46E3-94D0-8CA99097CFB1}.Release|ARM.Deploy.0 = Release|ARM
+		{6D143043-9582-46E3-94D0-8CA99097CFB1}.Release|x86.ActiveCfg = Release|x86
+		{6D143043-9582-46E3-94D0-8CA99097CFB1}.Release|x86.Build.0 = Release|x86
+		{6D143043-9582-46E3-94D0-8CA99097CFB1}.Release|x86.Deploy.0 = Release|x86
+		{088EA2D1-FB48-420D-B3EA-F2470D28C665}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{088EA2D1-FB48-420D-B3EA-F2470D28C665}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{088EA2D1-FB48-420D-B3EA-F2470D28C665}.Debug|ARM.ActiveCfg = Debug|ARM
+		{088EA2D1-FB48-420D-B3EA-F2470D28C665}.Debug|ARM.Build.0 = Debug|ARM
+		{088EA2D1-FB48-420D-B3EA-F2470D28C665}.Debug|x86.ActiveCfg = Debug|x86
+		{088EA2D1-FB48-420D-B3EA-F2470D28C665}.Debug|x86.Build.0 = Debug|x86
+		{088EA2D1-FB48-420D-B3EA-F2470D28C665}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{088EA2D1-FB48-420D-B3EA-F2470D28C665}.Release|Any CPU.Build.0 = Release|Any CPU
+		{088EA2D1-FB48-420D-B3EA-F2470D28C665}.Release|ARM.ActiveCfg = Release|ARM
+		{088EA2D1-FB48-420D-B3EA-F2470D28C665}.Release|ARM.Build.0 = Release|ARM
+		{088EA2D1-FB48-420D-B3EA-F2470D28C665}.Release|x86.ActiveCfg = Release|x86
+		{088EA2D1-FB48-420D-B3EA-F2470D28C665}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
