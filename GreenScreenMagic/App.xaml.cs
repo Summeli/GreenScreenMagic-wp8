@@ -16,7 +16,7 @@ namespace GreenScreenMagic
 {
     public partial class App : Application
     {
-
+        public static String OriginalFileName;
         public static BitmapImage ImageToEdit;
         public static BitmapImage ImageForBackground;
         public static WriteableBitmap Result;

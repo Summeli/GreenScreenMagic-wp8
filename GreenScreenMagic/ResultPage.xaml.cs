@@ -8,6 +8,8 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System.Windows.Media.Imaging;
+using System.IO;
+using Microsoft.Xna.Framework.Media;
 
 namespace GreenScreenMagic
 {
@@ -32,7 +34,8 @@ namespace GreenScreenMagic
             WriteableBitmap writeableBitmap = new WriteableBitmap((int)App.ImageToEdit.PixelWidth, (int)App.ImageToEdit.PixelHeight);
 
             await App.GSModel.RenderResultBitmap(writeableBitmap);
-            //TODO save the bitmap
+
+            //TODO: save the bitmap
         }
 
     }

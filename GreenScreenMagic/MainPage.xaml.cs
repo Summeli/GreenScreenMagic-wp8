@@ -81,6 +81,7 @@ namespace GreenScreenMagic
                 _imageToEdit = new BitmapImage();
                 _imageToEdit.SetSource(e.ChosenPhoto);
 
+                App.OriginalFileName = e.OriginalFileName;
                 App.ImageToEdit = _imageToEdit;
                 NavigationService.Navigate(new Uri("/ChromaSelectPage.xaml", UriKind.Relative));
             }
