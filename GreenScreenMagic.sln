@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2012 for Windows Phone
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreenScreenMagic", "GreenScreenMagic\GreenScreenMagic.csproj", "{2620D7C4-2E97-4EC3-B854-783398521700}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreenScreenTools", "GreenScreenTools\GreenScreenTools.csproj", "{088EA2D1-FB48-420D-B3EA-F2470D28C665}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,18 @@ Global
 		{2620D7C4-2E97-4EC3-B854-783398521700}.Release|x86.ActiveCfg = Release|x86
 		{2620D7C4-2E97-4EC3-B854-783398521700}.Release|x86.Build.0 = Release|x86
 		{2620D7C4-2E97-4EC3-B854-783398521700}.Release|x86.Deploy.0 = Release|x86
+		{088EA2D1-FB48-420D-B3EA-F2470D28C665}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{088EA2D1-FB48-420D-B3EA-F2470D28C665}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{088EA2D1-FB48-420D-B3EA-F2470D28C665}.Debug|ARM.ActiveCfg = Debug|ARM
+		{088EA2D1-FB48-420D-B3EA-F2470D28C665}.Debug|ARM.Build.0 = Debug|ARM
+		{088EA2D1-FB48-420D-B3EA-F2470D28C665}.Debug|x86.ActiveCfg = Debug|x86
+		{088EA2D1-FB48-420D-B3EA-F2470D28C665}.Debug|x86.Build.0 = Debug|x86
+		{088EA2D1-FB48-420D-B3EA-F2470D28C665}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{088EA2D1-FB48-420D-B3EA-F2470D28C665}.Release|Any CPU.Build.0 = Release|Any CPU
+		{088EA2D1-FB48-420D-B3EA-F2470D28C665}.Release|ARM.ActiveCfg = Release|ARM
+		{088EA2D1-FB48-420D-B3EA-F2470D28C665}.Release|ARM.Build.0 = Release|ARM
+		{088EA2D1-FB48-420D-B3EA-F2470D28C665}.Release|x86.ActiveCfg = Release|x86
+		{088EA2D1-FB48-420D-B3EA-F2470D28C665}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -8,7 +8,7 @@ using Windows.UI;
 
 namespace GreenScreenTools
 {
-    class TransparentToBlackFilter : CustomEffectBase
+    public class TransparentToBlackFilter : CustomEffectBase
     {
         public TransparentToBlackFilter(IImageProvider imageprovider)
             : base(imageprovider)
