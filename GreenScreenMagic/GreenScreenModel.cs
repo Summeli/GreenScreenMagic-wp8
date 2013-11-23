@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using Windows.Storage.Streams;
@@ -16,6 +17,7 @@ namespace GreenScreenMagic
         private IBuffer _bgBuffer = null;
         private double _currentDelta;
         private Windows.UI.Color _currentColor = new Windows.UI.Color();
+        private Semaphore _rendering = new Semaphore(1, 1);
 
         public IBuffer ImageBuffer
         {
@@ -82,40 +84,47 @@ namespace GreenScreenMagic
 
         public async Task RenderBitmapTransparentAndBlackAsync(WriteableBitmap bitmap, Windows.UI.Color color, double distance)
         {
-            _currentDelta = distance;
-            _currentColor = color;
-            var filters = new List<IFilter>();
-            filters.Add(new ChromaKeyFilter(_currentColor, _currentDelta, 1, false));
-
-            using (BufferImageSource source = new BufferImageSource(_imageBuffer))
-            using (FilterEffect effect = new FilterEffect(source) { Filters = filters })
-            using (TransparentToBlackFilter blackEffect = new TransparentToBlackFilter(effect))
-            using (WriteableBitmapRenderer renderer = new WriteableBitmapRenderer(blackEffect, bitmap))
+            if (_rendering.WaitOne(500))
             {
-                await renderer.RenderAsync();
+                _currentDelta = distance;
+                _currentColor = color;
+                var filters = new List<IFilter>();
+                filters.Add(new ChromaKeyFilter(_currentColor, _currentDelta, 1, false));
 
-                bitmap.Invalidate();
+                using (BufferImageSource source = new BufferImageSource(_imageBuffer))
+                using (FilterEffect effect = new FilterEffect(source) { Filters = filters })
+                using (TransparentToBlackFilter blackEffect = new TransparentToBlackFilter(effect))
+                using (WriteableBitmapRenderer renderer = new WriteableBitmapRenderer(blackEffect, bitmap))
+                {
+                    await renderer.RenderAsync();
+
+                    bitmap.Invalidate();
+                }
+                _rendering.Release();
             }
         }
 
         public async Task RenderResultBitmap(WriteableBitmap bitmap)
-        {
-     
-            var chomafilters = new List<IFilter>();
-            chomafilters.Add(new ChromaKeyFilter(_currentColor, _currentDelta, 1, false));
-
-             // First remove the chroma key from the fron image, and then combine images 1, and 2
-            using (BufferImageSource frontSource = new BufferImageSource(_imageBuffer))
-            using (FilterEffect front = new FilterEffect(frontSource) { Filters = chomafilters })
-            //combine images
-            using (BufferImageSource background = new BufferImageSource(_bgBuffer))
-            using (FilterEffect filters = new FilterEffect(background))
-            using (WriteableBitmapRenderer renderer = new WriteableBitmapRenderer(filters, bitmap))
+        {     
+            if (_rendering.WaitOne(500))
             {
-                filters.Filters = new IFilter[] { new BlendFilter(front, BlendFunction.Normal) };
-                await renderer.RenderAsync();
+               var chomafilters = new List<IFilter>();
+               chomafilters.Add(new ChromaKeyFilter(_currentColor, _currentDelta, 1, false));
 
-                bitmap.Invalidate();
+                 // First remove the chroma key from the fron image, and then combine images 1, and 2
+                using (BufferImageSource frontSource = new BufferImageSource(_imageBuffer))
+                using (FilterEffect front = new FilterEffect(frontSource) { Filters = chomafilters })
+                //combine images
+                using (BufferImageSource background = new BufferImageSource(_bgBuffer))
+                using (FilterEffect filters = new FilterEffect(background))
+                using (WriteableBitmapRenderer renderer = new WriteableBitmapRenderer(filters, bitmap))
+                {
+                    filters.Filters = new IFilter[] { new BlendFilter(front, BlendFunction.Normal) };
+                    await renderer.RenderAsync();
+
+                    bitmap.Invalidate();
+                }
+               _rendering.Release();
             }
         }
 
