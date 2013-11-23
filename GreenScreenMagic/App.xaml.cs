@@ -16,12 +16,11 @@ namespace GreenScreenMagic
 {
     public partial class App : Application
     {
-        /*
-        public static StreamImageSource ImageSource; 
-        public static MemoryStream Imagestream;
-        public static IBuffer buf;
-        */
+
         public static BitmapImage ImageToEdit;
+        public static BitmapImage ImageForBackground;
+        public static WriteableBitmap Result;
+
         public static GreenScreenModel GSModel = new GreenScreenModel();
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.

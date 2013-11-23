@@ -41,12 +41,6 @@ namespace GreenScreenMagic
             }
         }
 
-        public void Dispose()
-        {
-            _imageBuffer = null;
-            _bgBuffer = null;
-        }
-
         public IBuffer BackgroundBuffer
         {
             get
@@ -69,6 +63,12 @@ namespace GreenScreenMagic
                     _bgBuffer = value;
                 }
             }
+        }
+
+        public void Dispose()
+        {
+            _imageBuffer = null;
+            _bgBuffer = null;
         }
 
         //if both buffers are set, then we're ready to go

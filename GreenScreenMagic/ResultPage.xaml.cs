@@ -18,9 +18,13 @@ namespace GreenScreenMagic
             InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        async protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            imageBrush.ImageSource = App.ImageToEdit;
+            WriteableBitmap writeableBitmap = new WriteableBitmap((int)App.ImageToEdit.PixelWidth, (int)App.ImageToEdit.PixelHeight);
+
+            await App.GSModel.RenderResultBitmap(writeableBitmap);
+            imageBrush.ImageSource = writeableBitmap;
+            App.Result = writeableBitmap;
         }
 
         async public void save_clicked(object sender, RoutedEventArgs e)
@@ -28,14 +32,8 @@ namespace GreenScreenMagic
             WriteableBitmap writeableBitmap = new WriteableBitmap((int)App.ImageToEdit.PixelWidth, (int)App.ImageToEdit.PixelHeight);
 
             await App.GSModel.RenderResultBitmap(writeableBitmap);
-            imageBrush.ImageSource = writeableBitmap;
-
+            //TODO save the bitmap
         }
 
-
-        private async void accuracySlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-
-        }
     }
 }

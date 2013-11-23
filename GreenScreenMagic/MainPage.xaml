@@ -46,20 +46,21 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Button HorizontalAlignment="Left" Click="result_click" Height="180" Margin="30.123,363.473,0,0" VerticalAlignment="Top" Width="400" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <Button x:Name="viewResultGButton" HorizontalAlignment="Left" Click="result_click" Height="180" Margin="30.123,363.473,0,0" VerticalAlignment="Top" Width="400" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
                 <Button.Background>
-                    <ImageBrush ImageSource="Resources\view_result.png" />
+                    <ImageBrush x:Name="viewResultBrush" ImageSource="Resources\view_result.png" />
                 </Button.Background>
             </Button>
 
-            <Button HorizontalAlignment="Left" Click ="select_image_click" Height="180" Margin="40,106,0,0" VerticalAlignment="Top" Width="180">
+            <Button x:Name="selectIMGButton" HorizontalAlignment="Left" Click ="select_image_click" Height="180" Margin="40,106,0,0" VerticalAlignment="Top" Width="180">
                 <Button.Background>
-                    <ImageBrush ImageSource="Resources\select_image.png"/>
+                    <ImageBrush x:Name="selectImageBrush" ImageSource="Resources\select_image.png"/>
                 </Button.Background>
             </Button>
-            <Button HorizontalAlignment="Left" Click="select_bg_click" Height="180" Margin="250,106,0,0" VerticalAlignment="Top" Width="180">
+            
+            <Button x:Name="selectGBButton" HorizontalAlignment="Left" Click="select_bg_click" Height="180" Margin="250,106,0,0" VerticalAlignment="Top" Width="180">
                 <Button.Background>
-                    <ImageBrush ImageSource="Resources\select_background.png"/>
+                    <ImageBrush x:Name="selectBGBrush" ImageSource="Resources\select_background.png"/>
                 </Button.Background>
             </Button>
             

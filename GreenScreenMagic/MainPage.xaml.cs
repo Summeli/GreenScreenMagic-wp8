@@ -35,12 +35,17 @@ namespace GreenScreenMagic
         public MainPage()
         {
             InitializeComponent();
-
-            //App.GSModel = new GreenScreenModel();
-            // Sample code to localize the ApplicationBar
-            //BuildLocalizedApplicationBar();
         }
 
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            if (App.ImageToEdit != null)
+                selectImageBrush.ImageSource = App.ImageToEdit;
+            if (App.ImageForBackground != null)
+                selectBGBrush.ImageSource = App.ImageForBackground;
+            if (App.Result != null)
+                viewResultBrush.ImageSource = App.Result;
+        }
         private void result_click(object sender, RoutedEventArgs e)
         {
             if (App.GSModel.isReady())
@@ -50,7 +55,7 @@ namespace GreenScreenMagic
         private void select_image_click(object sender, RoutedEventArgs e)
         {
             PhotoChooserTask photo = new PhotoChooserTask();
-            photo.Completed += new EventHandler<PhotoResult>(imageChooserTaksCompleted);
+            photo.Completed += new EventHandler<PhotoResult>(imageChooserTaskCompleted);
             photo.ShowCamera = true;
             photo.Show();
         }
@@ -63,7 +68,7 @@ namespace GreenScreenMagic
             photo.Show();
         }
 
-        private void imageChooserTaksCompleted(object sender, PhotoResult e) 
+        private void imageChooserTaskCompleted(object sender, PhotoResult e) 
         {
             if (e.TaskResult == TaskResult.OK)
             {
@@ -78,8 +83,6 @@ namespace GreenScreenMagic
 
                 App.ImageToEdit = _imageToEdit;
                 NavigationService.Navigate(new Uri("/ChromaSelectPage.xaml", UriKind.Relative));
-
-
             }
         }
 
@@ -95,6 +98,7 @@ namespace GreenScreenMagic
                 e.ChosenPhoto.Flush();
                 _bgImage = new BitmapImage();
                 _bgImage.SetSource(e.ChosenPhoto);
+                App.ImageForBackground = _bgImage;
 
                 if(App.GSModel.isReady())
                     NavigationService.Navigate(new Uri("/ResultPage.xaml", UriKind.Relative));

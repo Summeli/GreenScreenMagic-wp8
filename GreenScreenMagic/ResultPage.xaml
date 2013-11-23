@@ -28,16 +28,9 @@
             </Canvas.Background>
 
         </Canvas>
-
-        <StackPanel Grid.Row="0" Margin="10,0,0,400">
-            <TextBlock Margin="9,-7,0,0" Text="Tap image to select transparent color" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Margin="9,-7,0,0" Text="Then set the sensitivity and press done" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <Slider x:Name="accuracySlider"  Minimum="0" Maximum="0.5" Value="0.2"
-        		SmallChange="0.05" LargeChange="0.1" ValueChanged="accuracySlider_ValueChanged"/>
-        </StackPanel>
         
         <StackPanel Grid.Row="1" Margin="1,1,0,0" >
-            <Button x:Name="saveButton" Click="save_clicked" Height="80" Content=" Done"/>
+            <Button x:Name="saveButton" Click="save_clicked" Height="80" Content="Save"/>
         </StackPanel>
 
     </Grid>

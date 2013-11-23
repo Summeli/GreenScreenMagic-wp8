@@ -78,7 +78,10 @@ namespace GreenScreenMagic
 
         private void done_clicked(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+            if (App.GSModel.isReady())
+                NavigationService.Navigate(new Uri("/ResultPage.xaml", UriKind.Relative));
+            else
+                NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
         }
 
         private async Task renderEffectAsync()
