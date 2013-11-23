@@ -22,7 +22,7 @@ namespace GreenScreenMagic
         public static IBuffer buf;
         */
         public static BitmapImage ImageToEdit;
-        public static GreenScreenModel GSModel;
+        public static GreenScreenModel GSModel = new GreenScreenModel();
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
         /// </summary>

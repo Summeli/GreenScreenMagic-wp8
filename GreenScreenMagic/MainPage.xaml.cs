@@ -36,13 +36,15 @@ namespace GreenScreenMagic
         {
             InitializeComponent();
 
-            App.GSModel = new GreenScreenModel();
+            //App.GSModel = new GreenScreenModel();
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
         }
 
         private void result_click(object sender, RoutedEventArgs e)
         {
+            if (App.GSModel.isReady())
+                NavigationService.Navigate(new Uri("/ResultPage.xaml", UriKind.Relative));
         }
 
         private void select_image_click(object sender, RoutedEventArgs e)
@@ -71,7 +73,6 @@ namespace GreenScreenMagic
                 App.GSModel.ImageBuffer = stream.GetWindowsRuntimeBuffer();
 
                 e.ChosenPhoto.Flush();
-
                 _imageToEdit = new BitmapImage();
                 _imageToEdit.SetSource(e.ChosenPhoto);
 
@@ -87,12 +88,16 @@ namespace GreenScreenMagic
         {
             if (e.TaskResult == TaskResult.OK)
             {
-                _bgImage = new BitmapImage();
-                _bgImage.SetSource(e.ChosenPhoto);
-
                 MemoryStream stream = new MemoryStream();
                 e.ChosenPhoto.CopyTo(stream);
                 App.GSModel.BackgroundBuffer = stream.GetWindowsRuntimeBuffer();
+
+                e.ChosenPhoto.Flush();
+                _bgImage = new BitmapImage();
+                _bgImage.SetSource(e.ChosenPhoto);
+
+                if(App.GSModel.isReady())
+                    NavigationService.Navigate(new Uri("/ResultPage.xaml", UriKind.Relative));
             }
         }
     }
