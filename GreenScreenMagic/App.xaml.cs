@@ -7,11 +7,22 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using GreenScreenMagic.Resources;
+using Nokia.Graphics.Imaging;
+using System.Windows.Media.Imaging;
+using System.IO;
+using Windows.Storage.Streams;
 
 namespace GreenScreenMagic
 {
     public partial class App : Application
     {
+        /*
+        public static StreamImageSource ImageSource; 
+        public static MemoryStream Imagestream;
+        public static IBuffer buf;
+        */
+        public static BitmapImage ImageToEdit;
+        public static GreenScreenModel GSModel;
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
         /// </summary>

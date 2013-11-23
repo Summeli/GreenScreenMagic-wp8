@@ -17,6 +17,7 @@ using Windows.UI.Input;
 using Windows.UI;
 using System.Windows.Input;
 using GreenScreenTools;
+using Windows.Storage;
 
 namespace GreenScreenMagic
 {
@@ -24,15 +25,10 @@ namespace GreenScreenMagic
     {
         private BitmapImage _imageToEdit;
         private double _currentDelta;
-        private BitmapImageSource _imageSource;
-        private StreamImageSource _imgStream = null;
-        private FilterEffect _filterEffect;
-
-        private TransparentToBlackFilter _transparentEffect = null;
         private Windows.UI.Color _currentColor = new Windows.UI.Color();
-        private Windows.Foundation.Size previewSize = new Windows.Foundation.Size(800, 480); 
 
-        private BitmapImageSource _imgSrc;
+        private Windows.Foundation.Size previewSize = new Windows.Foundation.Size(800, 480);
+       
         public ChomaSelectPage()
         {
             InitializeComponent();
@@ -41,24 +37,11 @@ namespace GreenScreenMagic
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             //read the image from the application service
-            if (PhoneApplicationService.Current.State.ContainsKey("imageToEdit"))
-            {
-                // If it exists, assign the data to the application member variable.
-                _imageToEdit = PhoneApplicationService.Current.State["imageToEdit"] as BitmapImage;
-                imageBrush.ImageSource = _imageToEdit;
-            }
+          _imageToEdit = App.ImageToEdit;
+           imageBrush.ImageSource = _imageToEdit;
 
-            if (PhoneApplicationService.Current.State.ContainsKey("imageStream"))
-            {
-                // If it exists, assign the data to the application member variable.
-                _imgStream = PhoneApplicationService.Current.State["imageStream"] as StreamImageSource;
-
-                //continue using the stream
-                
-            }
             
         }
-        //StorageFileImageSource 
 
         private async void imageCanvas_Tapped(object sender, GestureEventArgs e)
         {
@@ -81,41 +64,29 @@ namespace GreenScreenMagic
             byte red = colorArray[2];
             byte alpha = colorArray[3];
             _currentColor = Windows.UI.Color.FromArgb(alpha, red, green, blue);
-            
-            if (_imgStream != null)
+
+            if (_imageToEdit != null)
                 await renderEffectAsync();
         }
+
         private async void accuracySlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             _currentDelta = e.NewValue;
-            if(_imgStream!=null)
+            if (_imageToEdit != null)
              await renderEffectAsync();
+        }
+
+        private void done_clicked(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
         }
 
         private async Task renderEffectAsync()
         {
-            var filters = new List<IFilter>();
-         //   filters.Add(new ChromaKeyFilter(color, distance, 1, false));
-             filters.Add(new CartoonFilter(false));
-            _filterEffect = new FilterEffect(_imgStream)
-            {
-                Filters = filters
-            };
+            WriteableBitmap writeableBitmap = new WriteableBitmap((int)_imageToEdit.PixelWidth, (int)_imageToEdit.PixelHeight);
 
-            _transparentEffect = new TransparentToBlackFilter(_filterEffect);
-
-            WriteableBitmap writeableBitmap = new WriteableBitmap((int)previewSize.Width, (int)previewSize.Height);
-
-            //using (BufferImageSource source = new BufferImageSource(_imgStream))
-            using (FilterEffect effect = new FilterEffect(_imgStream) { Filters = filters })
-            using (TransparentToBlackFilter effect2 = new TransparentToBlackFilter(effect))
-            using (WriteableBitmapRenderer renderer = new WriteableBitmapRenderer(_transparentEffect, writeableBitmap))
-            {
-                await renderer.RenderAsync();
-
-                writeableBitmap.Invalidate();
-                //imageBrush.ImageSource = writeableBitmap;
-            }
+            await App.GSModel.RenderBitmapTransparentAndBlackAsync(writeableBitmap,_currentColor,_currentDelta);
+            imageBrush.ImageSource = writeableBitmap;
         }
 
     }

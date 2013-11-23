@@ -1,4 +1,13 @@
 ﻿using System;
+using System;
+using System.IO;
+using System.IO.IsolatedStorage;
+using System.Threading.Tasks;
+using System.Xml.Serialization;
+using Windows.Storage.Streams;
+using System.Runtime.InteropServices.WindowsRuntime;
+
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -13,21 +22,21 @@ using Microsoft.Phone.Tasks;
 using System.Windows.Media.Imaging;
 using System.IO;
 using Nokia.Graphics.Imaging;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace GreenScreenMagic
 {
     public partial class MainPage : PhoneApplicationPage
     {
-        private BitmapImage _imageToEdit;
         private BitmapImage _bgImage;
         private BitmapImage _resultImage;
-        private StreamImageSource _imgStreamSource;
-        private MemoryStream _imgStream;
+        private BitmapImage _imageToEdit;
         // Constructor
         public MainPage()
         {
             InitializeComponent();
 
+            App.GSModel = new GreenScreenModel();
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
         }
@@ -56,17 +65,20 @@ namespace GreenScreenMagic
         {
             if (e.TaskResult == TaskResult.OK)
             {
+                MemoryStream stream = new MemoryStream();
+                e.ChosenPhoto.CopyTo(stream);
+
+                App.GSModel.ImageBuffer = stream.GetWindowsRuntimeBuffer();
+
+                e.ChosenPhoto.Flush();
+
                 _imageToEdit = new BitmapImage();
                 _imageToEdit.SetSource(e.ChosenPhoto);
-                using (MemoryStream _imgStream = new MemoryStream())   
-                 {
-                     e.ChosenPhoto.CopyTo(_imgStream);
-                     _imgStreamSource = new StreamImageSource(_imgStream);
-                 }
-                //save the image into application service before going forward
-                PhoneApplicationService.Current.State["imageToEdit"] = _imageToEdit;
-                PhoneApplicationService.Current.State["imageStream"] = _imgStreamSource;
-                NavigationService.Navigate(new Uri("/ChromaSelectPage.xaml", UriKind.Relative)); 
+
+                App.ImageToEdit = _imageToEdit;
+                NavigationService.Navigate(new Uri("/ChromaSelectPage.xaml", UriKind.Relative));
+
+
             }
         }
 
@@ -75,8 +87,12 @@ namespace GreenScreenMagic
         {
             if (e.TaskResult == TaskResult.OK)
             {
-                _imageToEdit = new BitmapImage();
-                _imageToEdit.SetSource(e.ChosenPhoto);
+                _bgImage = new BitmapImage();
+                _bgImage.SetSource(e.ChosenPhoto);
+
+                MemoryStream stream = new MemoryStream();
+                e.ChosenPhoto.CopyTo(stream);
+                App.GSModel.BackgroundBuffer = stream.GetWindowsRuntimeBuffer();
             }
         }
     }

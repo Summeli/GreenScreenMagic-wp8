@@ -38,7 +38,7 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1" Margin="1,1,0,0" >
-            <Button x:Name="doneButton" Height="80" Content=" Done"/>
+            <Button x:Name="doneButton" Click="done_clicked" Height="80" Content=" Done"/>
         </StackPanel>
 
     </Grid>
