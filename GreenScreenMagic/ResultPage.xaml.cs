@@ -40,7 +40,15 @@ namespace GreenScreenMagic
             using (MemoryStream s = new MemoryStream())
             {
                 writeableBitmap.SaveJpeg(s, (int)App.ImageToEdit.PixelWidth, (int)App.ImageToEdit.PixelHeight, 0, 100);
-                //library.SavePictureToCameraRoll(App.OriginalFileName + "-edited", s);
+                try
+                {
+                    library.SavePictureToCameraRoll(App.OriginalFileName + "-edited", s);
+                }
+                catch (Exception)
+                {
+                    //sometimes it just fails
+                }
+                s.Close();
             }
             NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
 
