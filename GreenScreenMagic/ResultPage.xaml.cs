@@ -35,7 +35,15 @@ namespace GreenScreenMagic
 
             await App.GSModel.RenderResultBitmap(writeableBitmap);
 
-            //TODO: save the bitmap
+            //TODO: saving the bitmap doesn't work
+            var library = new MediaLibrary();
+            using (MemoryStream s = new MemoryStream())
+            {
+                writeableBitmap.SaveJpeg(s, (int)App.ImageToEdit.PixelWidth, (int)App.ImageToEdit.PixelHeight, 0, 100);
+                //library.SavePictureToCameraRoll(App.OriginalFileName + "-edited", s);
+            }
+            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+
         }
 
     }
