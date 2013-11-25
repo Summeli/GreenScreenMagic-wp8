@@ -37,8 +37,6 @@ namespace GreenScreenHelper
         public MainPage()
         {
             InitializeComponent();
-            // Sample code to localize the ApplicationBar
-            //BuildLocalizedApplicationBar();
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
