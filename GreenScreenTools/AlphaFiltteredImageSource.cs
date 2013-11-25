@@ -13,6 +13,7 @@ using Windows.Phone.Media.Capture;
 using Windows.Storage.Streams;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading;
+
 /**
  * Source class for providing the filttered media stream to the UI
  */
@@ -72,8 +73,6 @@ namespace GreenScreenTools
 
             _frameTime = (int)TimeSpan.FromSeconds((double)0).Ticks;
 
-            //_cameraImageSource = new CameraPreviewImageSource(_camera);
-
             //Create Filter
             var filters = new List<IFilter>();
             Windows.UI.Color green = new Windows.UI.Color();
@@ -84,8 +83,8 @@ namespace GreenScreenTools
                 Filters = filters
             };
             _transparentEffect = new TransparentToBlackFilter(_filterEffect);
+            
             // Report that we finished initializing its internal state and can now pass in frame samples
-
             ReportOpenMediaCompleted(mediaSourceAttributes, mediaStreamDescriptions);
         }
 
@@ -122,9 +121,7 @@ namespace GreenScreenTools
 
             _transparentEffect = new TransparentToBlackFilter(_filterEffect);
         }
-        /// <summary>
-        /// Processes camera frameBuffer using the set effect and provides media element with a filtered frameBuffer.
-        /// </summary>
+
         protected override void GetSampleAsync(MediaStreamType mediaStreamType)
         {
             var task = GetNewFrameAndApplyEffect(_frameBuffer.AsBuffer());
@@ -152,13 +149,6 @@ namespace GreenScreenTools
             {
                 uint scanlineByteSize = (uint)_frameSize.Width * 4; // 4 bytes per pixel in BGRA888 mode
                 var bitmap = new Nokia.Graphics.Imaging.Bitmap(_frameSize, ColorMode.Bgra8888, scanlineByteSize, frameBuffer);
-
-                /*
-                if (_filterEffect != null)
-                {
-                    var renderer = new BitmapRenderer(_filterEffect, bitmap);
-                    await renderer.RenderAsync();
-                }*/
 
                 if (_transparentEffect != null)
                 {
