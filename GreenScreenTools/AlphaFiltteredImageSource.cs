@@ -73,14 +73,9 @@ namespace GreenScreenTools
 
             _frameTime = (int)TimeSpan.FromSeconds((double)0).Ticks;
 
-            //Create Filter
-            var filters = new List<IFilter>();
-            Windows.UI.Color green = new Windows.UI.Color();
-            green = Windows.UI.Color.FromArgb(255, 0, 255, 0);
-            filters.Add(new ChromaKeyFilter(green, 0.5));
+            //Create an empty filter effect to make app more responsive on startup
             _filterEffect = new FilterEffect(_imageProvider)
             {
-                Filters = filters
             };
             _transparentEffect = new TransparentToBlackFilter(_filterEffect);
             
